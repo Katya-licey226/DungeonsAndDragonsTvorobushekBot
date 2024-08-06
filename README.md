@@ -1,0 +1,2 @@
+# DungeonsAndDragonsTvorobushekBot
+Игра на командообразование подготовленная для хакатона
