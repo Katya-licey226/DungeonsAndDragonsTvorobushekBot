@@ -27,14 +27,9 @@ def ask_count(message):
 
 @bot.message_handler(commands=['fix'])
 def ask_count(message):
-    try:
-        if 2 <= count <= 4:
-            user_data[message.chat.id]['count'] = count
-            bot.send_message(message.chat.id, f"Введите имена {count} человек, через пробел:")
-        else:
-            bot.send_message(message.chat.id, "Пожалуйста, введите число от 2 до 4.")
-    except ValueError:
-        bot.send_message(message.chat.id, "Пожалуйста, введите число.")
+    user_data[message.chat.id]['count'] = count
+    bot.send_message(message.chat.id, f"Введите имена {count} человек, через пробел:")
+
 
 @bot.message_handler(func=lambda message: message.chat.id in user_data and 0 < user_data[message.chat.id]['count'] <= 4)
 def ask_names(message):
