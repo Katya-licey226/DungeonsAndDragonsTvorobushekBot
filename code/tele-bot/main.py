@@ -13,7 +13,19 @@ def start(message):
 Но не только опасности ждут вас в этом путешествии. Вы найдёте верных союзников, которые помогут вам в борьбе с злом, и узнаете о себе много нового. Ваши решения и действия будут определять исход этой эпической битвы между добром и злом.
 Пора начинать! Сколько человек будет играть? (введите число от 2 до 4)''', reply_markup=types.ReplyKeyboardRemove())
 
-@bot.message_handler(func=lambda message: message.chat.id in user_data and user_data[message.chat.id]['count'] == 0, commands=['rep'])
+@bot.message_handler(func=lambda message: message.chat.id in user_data and user_data[message.chat.id]['count'] == 0)
+def ask_count(message):
+    try:
+        count = int(message.text)
+        if 2 <= count <= 4:
+            user_data[message.chat.id]['count'] = count
+            bot.send_message(message.chat.id, f"Введите имена {count} человек, через пробел:")
+        else:
+            bot.send_message(message.chat.id, "Пожалуйста, введите число от 2 до 4.")
+    except ValueError:
+        bot.send_message(message.chat.id, "Пожалуйста, введите число.")
+
+@bot.message_handler(commands=['fix'])
 def ask_count(message):
     try:
         count = int(message.text)
@@ -36,7 +48,7 @@ def ask_names(message):
         key_go = types.                InlineKeyboardButton(text='Поехали 🔮', callback_data='go!')
 # И добавляем кнопку на экран
         keyboard.add(key_go)
-        bot.send_message(message.chat.id, f"Поехали? Если закралась ошибка нажми /rep", reply_markup=keyboard)        
+        bot.send_message(message.chat.id, f"Поехали? Если закралась ошибка нажми /fix", reply_markup=keyboard)        
         del user_data[message.chat.id]
     else:
         bot.send_message(message.chat.id, f"Пожалуйста, введите ровно {user_data[message.chat.id]['count']} имен. Через пробел.")
