@@ -28,7 +28,6 @@ def ask_count(message):
 @bot.message_handler(commands=['fix'])
 def ask_count(message):
     try:
-        count = int(message.text)
         if 2 <= count <= 4:
             user_data[message.chat.id]['count'] = count
             bot.send_message(message.chat.id, f"Введите имена {count} человек, через пробел:")
