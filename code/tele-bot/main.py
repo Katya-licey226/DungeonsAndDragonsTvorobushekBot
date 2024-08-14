@@ -6,7 +6,17 @@ API_TOKEN = '7346294707:AAF3CdvR_R7pv2TcLuABsywQrbronwQWqoQ'
 bot = telebot.TeleBot(API_TOKEN)
 
 user_data = {}
-
+ def create_player_roles(num_players, player_names):
+    roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
+    # Создаем словарь для хранения информации о ролях игроков
+    player_roles = {}
+        
+    # Заполняем словарь информацией о ролях
+    for i in range(num_players):
+        player_roles[player_names[i]] = f"{player_names[i]} это {random.choice(roles)}"
+        
+    return player_roles
+        
 @bot.message_handler(commands=['start'])
 def start(message):
     user_data[message.chat.id] = {'count': 0, 'names': []}
@@ -58,20 +68,12 @@ def save_btn(call):
     message_id = message.message_id  
     bot.edit_message_text(chat_id=chat_id, message_id=message_id, text='Мне надо несколько минут для генерации истории, пожалуйста, подождите. История загрузится автомотически ничего делать не недо. Магия скоро произайдёт')  
     bot.send_message(message.chat.id, f"⌛️")
-    def create_player_roles(num_players, player_names, roles):
-        roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
-        # Создаем словарь для хранения информации о ролях игроков
-        player_roles = {}
-        
-        # Заполняем словарь информацией о ролях
-        for i in range(num_players):
-            player_roles[player_names[i]] = f"{player_names[i]} это {random.choice(roles)}"
-        
-        return player_roles
+ 
 
     # Пример использования функции
 
-    player_roles = create_player_roles(num_players, player_names, roles)
+    player_roles = create_player_roles(user_data[message.chat.id]['count'], user_data[message.chat.id]['names'])
+    user_data[message.chat.id]['roles'] = player_roles
     message_text = ai.giga_get("Что такое промт?")
     context_text = message_text
     bot.send_message(message.chat.id, message_text)
