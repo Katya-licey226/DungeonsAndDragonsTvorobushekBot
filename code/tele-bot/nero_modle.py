@@ -41,3 +41,4 @@ def giga_get (ques):
     context = response.json()
     response_in_context = context['choices'][0]['message']['content']
     print (response_in_context)
+    return response_in_context
