@@ -130,12 +130,12 @@ def save_btn(call):
         keyboard_1.add(q2)
         keyboard_1.add(q3)
         keyboard_1.add(q1)
-    else if get_pin == 2:
+    elif get_pin == 2:
         keyboard_1.add(q1)
         keyboard_1.add(q2)
         keyboard_1.add(q3)
         keyboard_1.add(q4) 
-    else if get_pin == 3:
+    elif get_pin == 3:
         keyboard_1.add(q1)
         keyboard_1.add(q4)
         keyboard_1.add(q3)
