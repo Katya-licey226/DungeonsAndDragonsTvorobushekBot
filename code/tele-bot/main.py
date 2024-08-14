@@ -68,8 +68,8 @@ def save_btn(call):
     bot.send_message(message.chat.id, name_get[0])
     bot.send_message(message.chat.id, name_get[1])
     roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
-    player[0] = f"{player_names[0]} это {random.choice(roles)}"
-    player[1] = f"{player_names[1]} это {random.choice(roles)}"
+    player[0] = f"{player_names[0]} это {random.choice(roles, k=1)}"
+    player[1] = f"{player_names[1]} это {random.choice(roles, k=1)}"
     bot.send_message(message.chat.id, player[0])
     bot.send_message(message.chat.id, player[1])
 
