@@ -1,5 +1,5 @@
 import telebot
-import nero_model as ai
+import nero_modle as ai
 from telebot import types
 API_TOKEN = '7346294707:AAF3CdvR_R7pv2TcLuABsywQrbronwQWqoQ'
 bot = telebot.TeleBot(API_TOKEN)
