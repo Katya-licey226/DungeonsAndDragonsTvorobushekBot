@@ -61,7 +61,7 @@ def save_btn(call):
     # Example usage of the ai module
     message_text = ai.giga_get("Привет!")
     bot.send_message(message.chat.id, message_text)
-
+    player = [0] * 2
     count_get = user_data[message.chat.id]['count']
     name_get = user_data[message.chat.id]['names']
     bot.send_message(message.chat.id, count_get)
