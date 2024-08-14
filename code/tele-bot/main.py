@@ -72,7 +72,7 @@ def save_btn(call):
 
     # Пример использования функции
 
-    player_roles = create_player_roles(user_data[message.chat.id]['count'], user_data[message.chat.id]['names'])
+    player_roles = create_player_roles(count, names)
     user_data[message.chat.id]['roles'] = player_roles
     message_text = ai.giga_get("Что такое промт?")
     context_text = message_text
