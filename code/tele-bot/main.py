@@ -1,6 +1,6 @@
 import telebot
 import nero_modle as ai
-
+import time
 from telebot import types
 API_TOKEN = '7346294707:AAF3CdvR_R7pv2TcLuABsywQrbronwQWqoQ'
 bot = telebot.TeleBot(API_TOKEN)
@@ -57,6 +57,7 @@ def save_btn(call):
     bot.edit_message_text(chat_id=chat_id, message_id=message_id, text='Мне надо несколько минут для генерации истории, пожалуйста, подождите. История загрузится автомотически ничего делать не недо. Магия скоро произайдёт')  
     bot.send_message(message.chat.id, f"⌛️")
     message_text = ai.giga_get("Что такое промт?")
+    time.time(2)
     context_text = message_text
     bot.send_message(message.chat.id, message_text)
 
