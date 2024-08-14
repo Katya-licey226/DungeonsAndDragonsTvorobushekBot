@@ -64,7 +64,7 @@ def save_btn(call):
     bot.send_message(message.chat.id, count_get)
     bot.send_message(message.chat.id, name_get[0])
     bot.send_message(message.chat.id, name_get[1])
-    bot.send_message(message.chat.id, player_roles)
+    bot.send_message(message.chat.id, player_roles[0])
     
     # Example usage of the ai module
     message_text = ai.giga_get("Что такое промт?")
