@@ -6,7 +6,7 @@ API_TOKEN = '7346294707:AAF3CdvR_R7pv2TcLuABsywQrbronwQWqoQ'
 bot = telebot.TeleBot(API_TOKEN)
 
 user_data = {}
- def create_player_roles(num_players, player_names):
+def create_player_roles(num_players, player_names):
     roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
     # Создаем словарь для хранения информации о ролях игроков
     player_roles = {}
