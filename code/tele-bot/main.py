@@ -1,6 +1,6 @@
 import telebot
 import nero_modle as ai
-from pyTelegramBotCAPTCHA import CaptchaManager
+
 from telebot import types
 API_TOKEN = '7346294707:AAF3CdvR_R7pv2TcLuABsywQrbronwQWqoQ'
 bot = telebot.TeleBot(API_TOKEN)
@@ -9,14 +9,6 @@ user_data = {}
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    for user in message.new_chat_members:
-
-    # Restrict the new chat member
-        captcha_manager.restrict_chat_member(bot, message.chat.id, user.id)
-
-    # send random CAPTCHA
-        captcha_manager.send_new_captcha(bot, message.chat, user)
-    
     user_data[message.chat.id] = {'count': 0, 'names': []}
     bot.send_message(message.chat.id, '''В далёком королевстве, где магия и чудеса являются обыденностью, а драконы и подземелья – частью повседневной жизни, начинается новая глава в истории героев. В этом мире, полном опасностей и приключений, вы – группа отважных искателей приключений, готовых бросить вызов тьме и защитить невинных от зла.
 Ваша миссия – исследовать древние подземелья, полные ловушек, монстров и сокровищ, и раскрыть тайны, скрытые за их стенами. Вы столкнётесь с могущественными драконами, охраняющими свои сокровища, и другими опасностями, которые подстерегают вас на каждом шагу.
