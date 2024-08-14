@@ -61,17 +61,16 @@ def save_btn(call):
     # Example usage of the ai module
     message_text = ai.giga_get("Привет!")
     bot.send_message(message.chat.id, message_text)
-    player = [0] * 2
+    
     count_get = user_data[message.chat.id]['count']
     name_get = user_data[message.chat.id]['names']
     bot.send_message(message.chat.id, count_get)
     bot.send_message(message.chat.id, name_get[0])
     bot.send_message(message.chat.id, name_get[1])
-
+    player = [0] * count_get
     roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
-    player[0] = f"{name_get[0]} это {random.choice(roles)}"
-    player[1] = f"{name_get[1]} это {random.choice(roles)}"
-    bot.send_message(message.chat.id, player[0])
-    bot.send_message(message.chat.id, player[1])
+    for i in range (count_get):
+        player[i] = f"{name_get[i]} это {random.choice(roles)}"
+        bot.send_message(message.chat.id, player[i])
 
 bot.polling()
