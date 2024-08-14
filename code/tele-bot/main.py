@@ -64,8 +64,8 @@ def save_btn(call):
     bot.send_message(message.chat.id, name_get[0])
     bot.send_message(message.chat.id, name_get[1])
     roles = ['Воин', 'Маг', 'Клерик', 'Разбойник', 'Бард', 'Паладин', 'Друид', 'Варвар', 'Плут', 'Монах']
-    for i in range(count_get):
-        player_names[i] = f"{player_names[i]} это {random.choice(roles)}"
+    player_names[0] = f"{player_names[0]} это {random.choice(roles)}"
+    player_names[1] = f"{player_names[1]} это {random.choice(roles)}"
     bot.send_message(message.chat.id, player_names[0])
     bot.send_message(message.chat.id, player_names[1])
     # Example usage of the ai module
