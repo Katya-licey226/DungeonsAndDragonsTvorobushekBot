@@ -24,7 +24,7 @@ def giga_get (ques):
       "messages": [
         {
           "role": "user",
-          "content": "Привет, как дела?"
+          "content": ques
         }
       ],
       "n": 1,
