@@ -58,6 +58,10 @@ def save_btn(call):
     message_id = message.message_id
     bot.edit_message_text(chat_id=chat_id, message_id=message_id, text='Мне надо несколько минут для генерации истории, пожалуйста, подождите. История загрузится автомотически ничего делать не недо. Магия скоро произайдёт')
     bot.send_message(message.chat.id, f"⌛️")
+    # Example usage of the ai module
+    message_text = ai.giga_get("Привет!")
+    bot.send_message(message.chat.id, message_text)
+
     count_get = user_data[message.chat.id]['count']
     name_get = user_data[message.chat.id]['names']
     bot.send_message(message.chat.id, count_get)
@@ -68,8 +72,5 @@ def save_btn(call):
     player[1] = f"{player_names[1]} это {random.choice(roles)}"
     bot.send_message(message.chat.id, player[0])
     bot.send_message(message.chat.id, player[1])
-    # Example usage of the ai module
-    message_text = ai.giga_get("Что такое промт?")
-    bot.send_message(message.chat.id, message_text)
 
 bot.polling()
