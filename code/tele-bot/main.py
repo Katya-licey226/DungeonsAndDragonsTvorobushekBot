@@ -60,7 +60,7 @@ def save_btn(call):
     bot.send_message(message.chat.id, f"⌛️")
     # Example usage of the ai module
 
-    
+
     count_get = user_data[message.chat.id]['count']
     name_get = user_data[message.chat.id]['names']
     bot.send_message(message.chat.id, count_get)
@@ -68,7 +68,9 @@ def save_btn(call):
     bot.send_message(message.chat.id, name_get[1])
     player = [0] * count_get
     rolei = [0] * count_get
-    super_mana = 0
+    live = [0] * count_get
+    mana = [0] * count_get
+    super_mana = 1
     gold = 0
     veriants1 = [0] * 3 
     veriants2 = [0] * 3 
@@ -76,10 +78,13 @@ def save_btn(call):
     veriants4 = [0] * 3 
     round = count_get * 2
     roles = ['Воин', 'Маг', 'Разбойник', 'Бард', 'Друид', 'Варвар', 'Монах']
+    d = 1
+    kat = 0
+    join = 0
     for i in range (count_get):
-        nober = random.uniform(0, 9)
-        player[i] = f"{name_get[i]} это {roles[nober]}"
-        rolei [i] = roles[nober]
+        nober = random.uniform(0, len(roles) - 1)
+        player[i] = f"{name_get[i]} это {roles[int(nober)]}"
+        rolei [i] = roles[int(nober)]
         bot.send_message(message.chat.id, player[i])
         if rolei[i] == 'Маг' or rolei[i] == 'Монах':
             live [i] = 3
@@ -89,8 +94,9 @@ def save_btn(call):
             if d != 0:
                 join = i
                 kat = 1
-                d == 0
+                d = 0
                 veriants1 = ['Призвать пипенюга', 'Призвать тучку', 'Превратить верёвку в ковёр самолёт']
+                veriants3 = ['', 'Подать факел', 'Спуститься вниз']
         elif rolei[i] == 'Воин' or rolei[i] == 'Разбойник' :
             live [i] = 5
             mana [i] = 10
@@ -98,8 +104,9 @@ def save_btn(call):
             if d != 0 :
                 join = i
                 kat = 2
-                d == 0
+                d = 0
                 veriants1 = ['Достать верёвку', 'Отрезать верёвку', 'Повесить вёрёвку на колышек и помочь']
+                veriants3 = ['Дать верёвку', 'Подать факел', 'Спуститься вниз']
         else :
             live [i] = 6
             mana [i] = 3
@@ -107,24 +114,24 @@ def save_btn(call):
             if d != 0 :
                 join = i
                 kat = 3
-                d == 0
+                d = 0
                 veriants1 = ['Оплатить доставку за 2 монеты', 'Подкупить гоблина', 'Обратиться к колдуньи за 2 монеты']
                 veriants3 = ['Дать верёвку', 'Подать факел', 'Спуститься вниз']
-    get_q1 = veriants1[random.uniform(0,2)]
-    get_q2 = veriants2[random.uniform(0,2)]
-    get_q3 = veriants3[random.uniform(0,2)]
-    get_q4 = veriants4[random.uniform(0,2)]
-        
-        
+    get_q1 = veriants1[int(random.uniform(0,2))]
+    get_q2 = veriants2[int(random.uniform(0,2))]
+    get_q3 = veriants3[int(random.uniform(0,2))]
+    get_q4 = veriants4[int(random.uniform(0,2))]
+
+
     message_text = ai.giga_get(f'''
-Сочини историю для игры Подземелье и драконы без своих комментариев где будет {count_get}  игроков, где {player}  и где {player[random.uniform(0,count_get - 1)]} идёт исследовать яму и случайно попадается в ловушку а остальные должны помочь, вариантов есть несколько: 1){get_q1} 2){get_q2} 3){get_q3} 4){get_q3}
+Сочини историю для игры Подземелье и драконы без своих комментариев где будет {count_get}  игроков, где {player}  и где {player[int(random.uniform(0,count_get - 1))]} идёт исследовать яму и случайно попадается в ловушку а остальные должны помочь, вариантов есть несколько: 1){get_q1} 2){get_q2} 3){get_q3} 4){get_q3}. Не аргументируй варианты ответа и не рассказывай что будет дальше. НЕРАССКАЗЫВАЙ ВЕРНЫЙ ОТВЕТ.
 ''')
     keyboard_1 = types.InlineKeyboardMarkup()
     q1 = types.InlineKeyboardButton(text=get_q1, callback_data='yes')
-    q2 = types.InlineKeyboardButton(text=get_q1, callback_data='no')
-    q3 = types.InlineKeyboardButton(text=get_q1, callback_data='yes')
-    q4 = types.InlineKeyboardButton(text=get_q1, callback_data='no')
-    get_pin = random.uniform(0, 3) 
+    q2 = types.InlineKeyboardButton(text=get_q2, callback_data='no')
+    q3 = types.InlineKeyboardButton(text=get_q3, callback_data='yes')
+    q4 = types.InlineKeyboardButton(text=get_q4, callback_data='no')
+    get_pin = int(random.uniform(0, 3)) 
     if get_pin == 1:
         keyboard_1.add(q4)
         keyboard_1.add(q2)
@@ -147,6 +154,6 @@ def save_btn(call):
         keyboard_1.add(q4)
     if super_mana > 0 :
         key_mana = types.InlineKeyboardButton(text=f"Супер-Мана ✨ (осталось {super_mana} использований)", callback_data='yes')
-        keyboard_1.add(Key_mana)
+        keyboard_1.add(key_mana)
     bot.send_message(message.chat.id, message_text,  reply_markup=keyboard_1)
 bot.polling()
